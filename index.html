@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Meme</title>
+   <!--Bubbly Font-->
+    <link rel="stylesheet" href="style.css">
+</head>
+ <body>
+    <div id ="home">
+    <h1>Guess the Meme</h1>
+    <img src="starting.jpg" alt="Starting Image">
+    <br><br>
+    <button onclick="startGame()">Start Game</button>
+    </div>
+    <div id="game" style="display:none;">
+    <h2 id="score">Score: 0</h2>
+    <p>Can you guess the meme from the image?</p>
+    <img id="meme" src="meme1.jpg" alt="Meme Image" width="300">
+ 
+    <div>
+        <button onclick="checkAnswer('a')" id="btn 1">Option A</button>
+        <button onclick="checkAnswer('b')" id="btn 2">Option B</button>
+    </div>
+
+    <h3 id="result"></h3>
+    <script>
+        let score = 0;
+        let current=0;
+
+        let questions = [
+      {
+        img: "speed.jpg",
+        options: ["Speed face", "Say wallahi say wallahi"],
+        answer: "b"
+    },
+    {
+        img: "meme2.jpg",
+        options: ["Before exam", "After exam"],
+        answer: "b"
+    },
+    {
+        img: "meme3.jpg",
+        options: ["POV: mom mad", "POV: teacher watching"],
+        answer: "a"
+    }
+];
+        function loadQuestion(){
+            if (current < questions.length) {
+                document.getElementById("meme").src = questions[current].image;
+                document.getElementById("btn 1").textContent = questions[current].options[0];
+                document.getElementById("btn 2").textContent = questions[current].options[1];
+            }
+            // 🟢 Start Game
+function startGame() {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    loadQuestion();}
+            function checkAnswer(choice)    {
+                if (choice === questions[current].answer) {
+                    score++;
+                    document.getElementById("result").textContent = "Correct!";
+                } else {
+                    document.getElementById("result").textContent = "Wrong!";
+                }
+                document.getElementById("score").textContent = "Score: " + score;
+                current++;
+                if (current < questions.length) {
+                    loadQuestion();
+                } else {
+                    document.getElementById("result").textContent += " Game Over! Final Score: " + score;
+                }
+            }
+            loadQuestion();
+            </script>
+</body>
+</html>
