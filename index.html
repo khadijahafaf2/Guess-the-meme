@@ -8,69 +8,109 @@
  <body>
     <div id ="home">
     <h1>Guess the Meme</h1>
-    <img src="starting.jpg" alt="Starting Image">
+    <img src="starting.jpg" alt="Starting Image" width="300">
     <br><br>
     <button onclick="startGame()">Start Game</button>
     </div>
     <div id="game" style="display:none;">
-    <h2 id="score">Score: 0</h2>
-    <p>Can you guess the meme from the image?</p>
+    <p>Can You Guess The MEME?</p>
     <img id="meme" src="meme1.jpg" alt="Meme Image" width="300">
+        <h2 id="score">Score: 0</h2>
  
     <div>
-        <button onclick="checkAnswer('a')" id="btn 1">Option A</button>
-        <button onclick="checkAnswer('b')" id="btn 2">Option B</button>
+        <button onclick="checkAnswer('a')" id="btn1">Option A</button>
+        <button onclick="checkAnswer('b')" id="btn2">Option B</button>
     </div>
 
     <h3 id="result"></h3>
-    <script>
-        let score = 0;
-        let current=0;
+<script>
+let score = 0;
+let current = 0;
 
-        let questions = [
-      {
-        img: "speed.jpg",
+let questions = [
+    {
+        img: "meme1.jpg",
         options: ["Speed face", "Say wallahi say wallahi"],
         answer: "b"
     },
     {
         img: "meme2.jpg",
-        options: ["Before exam", "After exam"],
+        options: ["YUJI", "SON!!"],
         answer: "b"
     },
     {
-        img: "meme3.jpg",
-        options: ["POV: mom mad", "POV: teacher watching"],
+        img: "meme5.jpg",
+        options: ["Erik King from Dexter", "some random baldy"],
         answer: "a"
+    },
+    {
+        img: "meme6.jpg",
+        options: ["SYBAU", " Get a load of this guy"],
+        answer: "a"
+    },
+    { 
+        img: "meme8.jpg",
+        options: ["bob", "Go to sleep"],
+        answer: "b"
+
+    },
+    {
+        img: "starting2.jpg",
+        options: ["Get Joshed", "FNAF"],
+        answer: "a"
+    },
+    {
+        img: "meme3.jpg",
+        options: ["Speed confused", "Speed face"],
+        answer: "b"
+    },
+    {
+        img: "meme8.jpg",
+        options: ["Dancing baby", "Dancing dog"],
+        answer: "a"
+    },
+    {
+        img: "meme9.jpg",
+        options: ["Dancing baby", "Dancing dog"],
+        answer: "b"
     }
 ];
-        function loadQuestion(){
-            if (current < questions.length) {
-                document.getElementById("meme").src = questions[current].image;
-                document.getElementById("btn 1").textContent = questions[current].options[0];
-                document.getElementById("btn 2").textContent = questions[current].options[1];
-            }
-            // 🟢 Start Game
+// 🟢 Start Game
 function startGame() {
     document.getElementById("home").style.display = "none";
     document.getElementById("game").style.display = "block";
-    loadQuestion();}
-            function checkAnswer(choice)    {
-                if (choice === questions[current].answer) {
-                    score++;
-                    document.getElementById("result").textContent = "Correct!";
-                } else {
-                    document.getElementById("result").textContent = "Wrong!";
-                }
-                document.getElementById("score").textContent = "Score: " + score;
-                current++;
-                if (current < questions.length) {
-                    loadQuestion();
-                } else {
-                    document.getElementById("result").textContent += " Game Over! Final Score: " + score;
-                }
-            }
-            loadQuestion();
-            </script>
+    loadQuestion();
+}
+
+// 📸 Load Question
+function loadQuestion() {
+    if (current < questions.length) {
+        document.getElementById("meme").src = questions[current].img;
+        document.getElementById("btn1").textContent = questions[current].options[0];
+        document.getElementById("btn2").textContent = questions[current].options[1];
+    }
+}
+
+// ✅ Check Answer
+function checkAnswer(choice) {
+    if (choice === questions[current].answer) {
+        score++;
+        document.getElementById("result").textContent = "Correct!";
+    } else {
+        document.getElementById("result").textContent = "Wrong!";
+    }
+
+    document.getElementById("score").textContent = "Score: " + score;
+
+    current++;
+
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        document.getElementById("result").textContent =
+            "Game Over! Final Score: " + score;
+    }
+}
+</script>
 </body>
 </html>
