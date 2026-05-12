@@ -6,14 +6,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
  <body>
+    <img src="sticker1.png" class="sticker top-left" alt="Sticker 1" width="200" height="200">
+   
+    <audio id="bgMusic" src ="music3.m4a" loop></audio>
+
+    <button id="musicToggle" onclick="toggleSound()">🔊</button>
+    
+    <div class="app"> 
+    
     <div id ="home">
-    <h1>Guess the Meme</h1>
+    <h1>Guess the Meme!!!!!</h1>
     <img src="starting.jpg" alt="Starting Image" width="300">
     <br><br>
-    <button onclick="startGame()">Start Game</button>
+    <button onclick="startGame()">Start Game!!</button>
     </div>
+    
     <div id="game" style="display:none;">
-    <p>Can You Guess The MEME?</p>
+    <p>CAN YOU GUESS THE MEME?</p>
     <img id="meme" src="meme1.jpg" alt="Meme Image" width="300">
         <h2 id="score">Score: 0</h2>
  
@@ -23,6 +32,21 @@
     </div>
 
     <h3 id="result"></h3>
+    </div>
+
+ <!-- 🎉 END SCREEN -->
+<div id="end" style="display:none;">
+    <h1>Thanks For Playing! 🎉</h1>
+
+    <h2 id="finalScore"></h2>
+
+    <img src="ending.jpg" width="300">
+
+    <br><br>
+
+    <button onclick="restartGame()">Play Again 🔄</button>
+</div>
+
 <script>
 let score = 0;
 let current = 0;
@@ -30,13 +54,13 @@ let current = 0;
 let questions = [
     {
         img: "meme1.jpg",
-        options: ["Speed face", "Say wallahi say wallahi"],
+        options: ["Speed face", "Say wallahi say wallahi!!"],
         answer: "b"
     },
     {
         img: "meme2.jpg",
-        options: ["YUJI", "SON!!"],
-        answer: "b"
+        options: ["SON!!", "Yuji"],
+        answer: "a"
     },
     {
         img: "meme5.jpg",
@@ -45,18 +69,18 @@ let questions = [
     },
     {
         img: "meme6.jpg",
-        options: ["SYBAU", " Get a load of this guy"],
-        answer: "a"
+        options: ["Get A load of this guy", " SYBAU!!"],
+        answer: "b"
     },
     { 
         img: "meme8.jpg",
-        options: ["bob", "Go to sleep"],
+        options: ["bob", "Go to sleep!!"],
         answer: "b"
 
     },
     {
         img: "starting2.jpg",
-        options: ["Get Joshed", "FNAF"],
+        options: ["Get Joshed!!", "FNAF"],
         answer: "a"
     },
     {
@@ -65,18 +89,51 @@ let questions = [
         answer: "b"
     },
     {
-        img: "meme8.jpg",
-        options: ["Dancing baby", "Dancing dog"],
+        img: "meme9.jpg",
+        options: ["Speed: after promising to stop cussing", "say wallahi say wallahi"],
         answer: "a"
     },
     {
-        img: "meme9.jpg",
-        options: ["Dancing baby", "Dancing dog"],
+        img: "meme11.jpg",
+        options: ["hood researchers ", "What is this diddy blud doing...."],
+        answer: "b"
+    },
+    {
+        img: "meme12.jpg",
+        options: ["Bro's Life", "FNAF"],
+        answer: "a"
+    },
+    {
+        img: "meme18.jpg",
+        options: ["Homelander from The Boys", "Speed face"],
+        answer: "a"
+    },
+    {
+        img: "meme14.jpg",
+        options: ["SYBAU!!", " My pinky is up "],
+        answer: "b"
+    },
+    {
+        img: "meme15.jpg",
+        options: ["Gaby from Dance Moms", "flight misssed his flight!!"],
+        answer: "a"
+    },
+    {
+        img: "meme16.jpg",
+        options : [" Cameron Tucker from Modern Family", "Josh Hutcherson"],
+        answer: "a"
+    },
+    {
+        img: "meme17.jpg",
+        options: ["Get Joshed!!", " Efraim Diveroli from War Dogs"],
         answer: "b"
     }
 ];
+ 
 // 🟢 Start Game
 function startGame() {
+     document.getElementById("bgMusic").play();
+    
     document.getElementById("home").style.display = "none";
     document.getElementById("game").style.display = "block";
     loadQuestion();
@@ -88,29 +145,78 @@ function loadQuestion() {
         document.getElementById("meme").src = questions[current].img;
         document.getElementById("btn1").textContent = questions[current].options[0];
         document.getElementById("btn2").textContent = questions[current].options[1];
-    }
+ 
+}
 }
 
 // ✅ Check Answer
 function checkAnswer(choice) {
     if (choice === questions[current].answer) {
         score++;
-        document.getElementById("result").textContent = "Correct!";
+        document.getElementById("result").textContent = " ✅Correct!";
     } else {
-        document.getElementById("result").textContent = "Wrong!";
+        document.getElementById("result").textContent = " ❌Wrong!";
     }
 
     document.getElementById("score").textContent = "Score: " + score;
 
     current++;
-
+    
     if (current < questions.length) {
         loadQuestion();
     } else {
-        document.getElementById("result").textContent =
-            "Game Over! Final Score: " + score;
+       document.getElementById("game").style.display = "none";
+        document.getElementById("end").style.display = "block";
+
+        document.getElementById("finalScore").textContent =
+          "Final Score: " + score;
     }
 }
+    function restartGame() {
+    score = 0;
+    current = 0;
+
+    document.getElementById("score").textContent = "Score: 0";
+
+    document.getElementById("end").style.display = "none";
+    document.getElementById("home").style.display = "block";
+
+        let music = document.getElementById("bgMusic");
+    music.pause();
+    music.currentTime = 0;
+    startGame();
+    }
+    // 🔊 Toggle Sound Button
+function toggleSound() {
+    let music = document.getElementById("bgMusic");
+    let btn = document.querySelector(".sound-btn");
+     
+    Music.muted = !music.muted;
+
+        if (music.muted) {
+            btn.textContent = "🔇 Sound off";
+        } else {
+            btn.textContent = "🔊 Sound on";
+        }
+    
+}
+</script>
+  <button id="musicToggle" onclick="toggleSound()" style="position:fixed;top:15px; right:15px;padding:8px 12px;border:none;border-radius:10px;background:white;color:black;cursor:pointer;">
+    🔊 Sound on
+</button>
+<script>
+    function toggleSound() {
+        let music = document.getElementById("bgMusic");
+        let btn = document.getElementById("soundBtn");
+        
+        music.muted = !music.muted;
+
+        if (music.muted) {
+            btn.textContent = "🔇 Sound off";
+        } else {
+            btn.textContent = "🔊 Sound on";
+        }
+    }
 </script>
 </body>
 </html>

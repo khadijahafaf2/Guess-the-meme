@@ -1,7 +1,7 @@
 body{
-    background-color: #152d63;
+    background-color: #3456a4;
     color: white;
-    font-family:'Fredoka One', sans-serif;
+    font-family:'Bubblegum Sans', sans-serif;
     text-align: center;
     
     display: flex;
@@ -25,9 +25,9 @@ h1{
 }
 
 #score {
-    width: 150px;
+    width: 100px;
     margin: 10px auto;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #meme {
@@ -41,18 +41,46 @@ button {
     font-size: 16px;
     border-radius: 20px;
     cursor: pointer;
-    background-color: #4da6ff;
+    background-color: #80154a;
     color: white;
-    font-family:'Fredoka', sans-serif;
+    font-family:'Bubblegum Sans', sans-serif;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #66b3ff;
+    background-color: #174df0;
     transform: scale(1.05);
 }
 
 #result {
     font-size: 20px;
     margin-top: 15px;
+}
+
+ #sticker1 {
+    position: fixed;
+    width: 200px;
+    z-index: 1000
+}
+
+/* corners */
+.top-left {
+    top: 20px;
+    left: 50px;;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+    width: 60px;
+}
+
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
 }
